@@ -45,31 +45,45 @@ public class CustomListAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
+        final Holder holder;
         if (inflater == null)
             inflater = (LayoutInflater) activity
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        if (convertView == null)
+        if (convertView == null) {
+            holder = new Holder();
             convertView = inflater.inflate(R.layout.item_row, null);
 
+            holder.thumbnail = (ImageView) convertView.findViewById(R.id.thumbnail);
+            holder.name = (TextView) convertView.findViewById(R.id.name);
+            holder.price = (TextView) convertView.findViewById(R.id.price);
+            holder.brand = (TextView) convertView.findViewById(R.id.brand);
 
-        ImageView thumbnail = (ImageView) convertView
-                .findViewById(R.id.thumbnail);
-        TextView name = (TextView) convertView.findViewById(R.id.name);
-        TextView price = (TextView) convertView.findViewById(R.id.price);
-        TextView brand = (TextView) convertView.findViewById(R.id.brand);
+            convertView.setTag(holder);
+
+        } else {
+            holder = (Holder) convertView.getTag();
+
+        }
 
 
         Result r = resultList.get(position);
 
         Picasso.with(activity)
                 .load(r.getImages().get(0).getPath())
-                .into(thumbnail);
-        name.setText(r.getData().getName());
-        price.setText(r.getData().getPrice());
-        brand.setText(r.getData().getBrand());
+                .into(holder.thumbnail);
+        holder.name.setText(r.getData().getName());
+        holder.price.setText(r.getData().getPrice());
+        holder.brand.setText(r.getData().getBrand());
 
 
         return convertView;
+    }
+
+    class Holder {
+        ImageView thumbnail;
+        TextView name;
+        TextView price;
+        TextView brand;
     }
 
 }
