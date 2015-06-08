@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">RocketInternet1</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+    <string-array name="sort_array">
+        <item>Popularity</item>
+        <item>Price</item>
+        <item>Name</item>
+        <item>Brand</item>
+
+    </string-array>
+</resources>
