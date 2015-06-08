@@ -79,7 +79,7 @@ public class CustomListAdapter extends BaseAdapter {
         return convertView;
     }
 
-    class Holder {
+    static class Holder {
         ImageView thumbnail;
         TextView name;
         TextView price;
